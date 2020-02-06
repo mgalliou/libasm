@@ -10,7 +10,8 @@ LDFLAGS  = -L.
 LDLIBS   = -lasm
 SRC_DIR  = src
 SRC_NAME = ft__strlen.c\
-		   ft__strcpy.c
+		   ft__strcpy.c\
+		   ft__strcmp.c
 OBJ_NAME = $(SRC_NAME:.c=.o)
 OBJ_DIR  = obj
 SRC      = $(addprefix $(SRC_DIR)/,$(SRC_NAME))
