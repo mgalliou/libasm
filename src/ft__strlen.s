@@ -3,20 +3,21 @@ bits 64
 section .text
 	global _ft__strlen
 
-
 _ft__strlen:
-	push rbp      ;init scope
-	mov rbp, rsp
+	push rbp
+	mov  rbp, rsp
+	sub  rsp, 16
 
-	mov rax, 0    ;init len
-.inc:
+	mov rax, rdi ; save string beg ptr
+.loop:
 	cmp byte [rdi], ''
-	jz .done
-	inc rdi
-	inc rax
-	jmp .inc
-	
-.done:
-	pop rbp
-	ret
+	jz  .done ; if byte is zeroed jump out of the loop
+	inc rdi   ; else increment ptr addr
+	jmp .loop
 
+.done:
+	sub rdi, rax ; sub end addr to beg addr
+	mov rax, rdi ; move diff to ret register
+
+	leave
+	ret
