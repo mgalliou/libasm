@@ -4,6 +4,8 @@
 extern int 	ft__strlen(const char *s);
 extern char	*ft__strcpy(char *dst, const char* src);
 extern int	ft__strcmp(const char *s1, const char* s2);
+extern int	ft__write(int fildes, const void* buf, size_t nbyte);
+extern int	ft__read(int fildes, const void* buf, size_t nbyte);
 
 int main()
 {
@@ -20,4 +22,6 @@ int main()
 
 	n = ft__strcmp(str3, "tesv");
 	printf("%d %d\n", n, strcmp(str3, "tesv"));
+
+	ft__write(1, str1, ft__strlen(str1));
 }
