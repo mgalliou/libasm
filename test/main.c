@@ -19,5 +19,5 @@ int main()
 	printf("%s\n", str1);
 
 	n = ft__strcmp(str3, "tesv");
-	printf("%d %d\n", n, strcmp(str3, "text"));
+	printf("%d %d\n", n, strcmp(str3, "tesv"));
 }

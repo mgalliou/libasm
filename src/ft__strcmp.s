@@ -8,20 +8,20 @@ _ft__strcmp:
 	mov  rbp, rsp
 	sub  rsp, 16
 
-	xor rax, rax
-	xor rbx, rbx
+	xor rax, rax ; make sure rax and r11 are zeroed
+	xor r11, r11
 .loop:
-	mov rax, rdi
-	mov rbx, rsi
-	cmp byte di, ''
-	je .done
-	cmp al, bl
-	jne  .done ; if byte of zeroed jump out of the loop
+	movzx rax, byte [rdi] ; move param to registers
+	movzx r11, byte [rsi] ; //
+	cmp al, '' ; check end of str
+	je .done   ; jump if byte is null
+	cmp al, r11b   ; compare byte
+	jne .done      ; if different jump out of the loop
 	inc rdi        ; increment dst ptr
 	inc rsi        ; increment src ptr
 	jmp .loop
 
 .done:
-	sub al, bl
+	sub rax, r11
 	leave
 	ret
