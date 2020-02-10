@@ -1,0 +1,3 @@
+[submodule "test/libftest"]
+	path = test/libftest
+	url = https://github.com/mgalliou/libftest

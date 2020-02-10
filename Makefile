@@ -2,9 +2,9 @@ NAME     = libasm.a
 RM       = rm -rf
 CC       = gcc
 CFLAGS   = -Wall -Wextra -Werror
-ASM      = nasm
-ASMFLAGS = -f macho64
-AR       = ar rc
+AS       = nasm
+ASFLAGS  = -f macho64
+ARFLAGS  = rc
 RL       = ranlib
 LDFLAGS  = -L.
 LDLIBS   = -lasm
@@ -22,16 +22,19 @@ OBJ      = $(addprefix $(OBJ_DIR)/,$(OBJ_NAME))
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(AR) $@ $^
+	$(AR) $(ARFLAGS) $@ $^
 	$(RL) $@
 	
 $(OBJ_DIR)/%.o : $(SRC_DIR)/%.s
 	@mkdir -p $(dir $@)
-	$(ASM) $(ASMFLAGS) $< -o $@
+	$(AS) $(ASFLAGS) $< -o $@
+
+debug: ASFLAGS := $(ASFLAGS) -g
+debug: all
 
 test: $(NAME)
-	gcc $(LDFLAGS) $(LDLIBS) -o test/test test/main.c 
-	./test/test
+	make -C test
+
 clean:
 	$(RM) $(OBJ_DIR)
 

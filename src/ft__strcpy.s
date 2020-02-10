@@ -8,16 +8,14 @@ _ft__strcpy:
 	mov  rbp, rsp
 	sub  rsp, 16
 
-	mov  rax, rsi ;save dst str ptr
+	xor rcx, rcx ; zero rcx
 .loop:
-	cmp byte [rsi], ''
-	jz  .done ; if byte of zeroed jump out of the loop
-	mov rbx, [rsi] ; copy src str to tmp register
-	mov [rdi], rbx ; copy tmp register to dst str
-	inc rdi        ; increment dst ptr
-	inc rsi        ; increment src ptr
-	jmp .loop
+	movzx rax, byte [rsi + rcx] ; put in rcx byte to be copied
+	mov   byte [rdi + rcx], al  ; cpy byte to dst
+	inc   rcx                   
+	test  al, al ; if copied byte is not zero continue
+	jne   .loop
 
-.done:
+	mov rax, rdi
 	leave
 	ret

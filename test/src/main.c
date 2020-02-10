@@ -1,19 +1,22 @@
+#include "tests.h"
 #include "stdio.h"
 #include "string.h"
 
-extern int 	ft__strlen(const char *s);
-extern char	*ft__strcpy(char *dst, const char* src);
-extern int	ft__strcmp(const char *s1, const char* s2);
-extern int	ft__write(int fildes, const void* buf, size_t nbyte);
-extern int	ft__read(int fildes, const void* buf, size_t nbyte);
-
 int main()
 {
+	/*
 	int n;
 	char str1[5] = "    ";
 	char str2[5] = "test";
 	char *str3;
+	char *str4;
+	*/
 
+	RUN_TEST_SUITE(suite_ft__strlen);
+	RUN_TEST_SUITE(suite_ft__strcpy);
+//	RUN_TEST_SUITE(suite_ft__strdup);
+
+	/*
 	n = ft__strlen(str2);
 	printf("%d\n", n);
 
@@ -24,4 +27,9 @@ int main()
 	printf("%d %d\n", n, strcmp(str3, "tesv"));
 
 	ft__write(1, str1, ft__strlen(str1));
+	printf("\n");
+
+	str4 = ft__strdup(str3);
+	printf("%s\n", str4);
+	*/
 }
