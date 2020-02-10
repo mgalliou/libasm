@@ -13,7 +13,8 @@ SRC_NAME = ft__strlen.s\
 		   ft__strcpy.s\
 		   ft__strcmp.s\
 		   ft__write.s\
-		   ft__read.s
+		   ft__read.s\
+		   ft__strdup.s
 OBJ_NAME = $(SRC_NAME:.s=.o)
 OBJ_DIR  = obj
 SRC      = $(addprefix $(SRC_DIR)/,$(SRC_NAME))

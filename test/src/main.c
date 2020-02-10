@@ -14,7 +14,7 @@ int main()
 
 	RUN_TEST_SUITE(suite_ft__strlen);
 	RUN_TEST_SUITE(suite_ft__strcpy);
-//	RUN_TEST_SUITE(suite_ft__strdup);
+	RUN_TEST_SUITE(suite_ft__strdup);
 
 	/*
 	n = ft__strlen(str2);
