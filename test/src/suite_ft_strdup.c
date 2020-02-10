@@ -3,21 +3,21 @@
 
 static TEST(when_str_is_zero_len)
 {
-	char s[] = "";
+	const char s[] = "";
 
 	assert_str_equal(strdup(s), ft_strdup(s));
 }
 
 static TEST(when_str_len_is_one)
 {
-	char s[] = "1";
+	const char s[] = "1";
 
 	assert_str_equal(strdup(s), ft_strdup(s));
 }
 
 static TEST(when_str_is_ten)
 {
-	char s[] = "0123456789";
+	const char s[] = "0123456789";
 
 	assert_str_equal(strdup(s), ft_strdup(s));
 }
