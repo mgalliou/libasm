@@ -9,12 +9,12 @@ RL       = ranlib
 LDFLAGS  = -L.
 LDLIBS   = -lasm
 SRC_DIR  = src
-SRC_NAME = ft__strlen.s\
-		   ft__strcpy.s\
-		   ft__strcmp.s\
-		   ft__write.s\
-		   ft__read.s\
-		   ft__strdup.s
+SRC_NAME = ft_strlen.s\
+		   ft_strcpy.s\
+		   ft_strcmp.s\
+		   ft_write.s\
+		   ft_read.s\
+		   ft_strdup.s
 OBJ_NAME = $(SRC_NAME:.s=.o)
 OBJ_DIR  = obj
 SRC      = $(addprefix $(SRC_DIR)/,$(SRC_NAME))

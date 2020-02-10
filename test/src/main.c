@@ -12,9 +12,9 @@ int main()
 	char *str4;
 	*/
 
-	RUN_TEST_SUITE(suite_ft__strlen);
-	RUN_TEST_SUITE(suite_ft__strcpy);
-	RUN_TEST_SUITE(suite_ft__strdup);
+	RUN_TEST_SUITE(suite_ft_strlen);
+	RUN_TEST_SUITE(suite_ft_strcpy);
+	RUN_TEST_SUITE(suite_ft_strdup);
 
 	/*
 	n = ft__strlen(str2);

@@ -1,6 +1,6 @@
 bits 64
 
-SYS_read equ 0x02000003
+SYS_write  equ 0x02000004
 
 section .text
 	global _ft__write
@@ -11,7 +11,7 @@ _ft__write:
 	sub  rsp, 16
 
 	push rax
-	mov rax, SYS_read ;print first board
+	mov  rax, SYS_write
 	syscall
 
 	pop rax

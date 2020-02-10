@@ -1,9 +1,9 @@
 bits 64
 
 section .text
-	global _ft__strlen
+	global _ft_strlen
 
-_ft__strlen:
+_ft_strlen:
 	push rbp
 	mov  rbp, rsp
 	sub  rsp, 16
