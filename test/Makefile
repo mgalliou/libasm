@@ -15,7 +15,8 @@ RM			= 	rm -rf
 SRC_NAME	=	main.c\
 				suite_ft_strlen.c\
 				suite_ft_strcpy.c\
-				suite_ft_strdup.c
+				suite_ft_strdup.c\
+				suite_ft_strchr.c
 SRC			=	$(addprefix $(SRC_DIR)/,$(SRC_NAME))
 OBJ_NAME	=	$(SRC_NAME:.c=.o)
 OBJ			=	$(addprefix $(OBJ_DIR)/,$(OBJ_NAME))

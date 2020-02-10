@@ -14,7 +14,8 @@ SRC_NAME = ft_strlen.s\
 		   ft_strcmp.s\
 		   ft_write.s\
 		   ft_read.s\
-		   ft_strdup.s
+		   ft_strdup.s\
+		   ft_strchr.s
 OBJ_NAME = $(SRC_NAME:.s=.o)
 OBJ_DIR  = obj
 SRC      = $(addprefix $(SRC_DIR)/,$(SRC_NAME))
