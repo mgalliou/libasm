@@ -3,27 +3,27 @@
 
 static TEST(when_str_is_zero_len)
 {
-	char s[1] = "";
+	char s[] = "";
 
-	assert_str_equal(ft__strdup(s), strdup(s));
+	assert_str_equal(strdup(s), ft_strdup(s));
 }
 
 static TEST(when_str_len_is_one)
 {
-	char s[2] = "1";
+	char s[] = "1";
 
-	assert_str_equal(ft__strdup(s), strdup(s));
+	assert_str_equal(strdup(s), ft_strdup(s));
 }
 
 static TEST(when_str_is_ten)
 {
-	char s[11] = "0123456789";
+	char s[] = "0123456789";
 
-	assert_str_equal(ft__strdup(s), strdup(s));
+	assert_str_equal(strdup(s), ft_strdup(s));
 }
 
 
-TEST_SUITE(suite_ft__strdup)
+TEST_SUITE(suite_ft_strdup)
 {
 	RUN_TEST(when_str_is_zero_len);
 	RUN_TEST(when_str_len_is_one);
