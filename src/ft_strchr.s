@@ -8,27 +8,29 @@ _ft_strchr:
 	mov  rbp, rsp
 	sub  rsp, 16
 
-	xor rax, rax
-	xor rbx, rbx
-	dec rdi
+	movzx rcx, sil  ; save char to find
+
 .loop:
+	movzx rax, byte [rdi]
+	cmp   al, 0 
+	jz    .endofstr
+	cmp   al, cl
+	je    .found
 	inc   rdi
-	movzx rbx, byte [rdi]
-	test  bl, bl
-	jz    .notfound
-	cmp   rbx, rsi
-	jne   .loop
-	
-;.end_loop:
-;	cmp [rdi], rsi
-;	je  .found
-;	xor rax, rax
-;	mov rax, rax
+	jmp   .loop
+
+.endofstr:
+	cmp al, cl
+	je  .found
+	jmp .notfound
+
+.found:
+	mov rax, rdi
+	jmp .exit
 
 .notfound:
-	mov rax, rax
-	leave
-	ret
+	xor rax, rax
+	jmp .exit
 
 .exit:
 	leave

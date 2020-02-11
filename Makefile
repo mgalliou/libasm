@@ -34,7 +34,7 @@ $(OBJ_DIR)/%.o : $(SRC_DIR)/%.s
 debug: ASFLAGS := $(ASFLAGS) -g
 debug: all
 
-test: $(NAME)
+test: all
 	make -C test
 
 clean:

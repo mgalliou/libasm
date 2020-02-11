@@ -2,7 +2,7 @@
 #include "stdio.h"
 #include "string.h"
 
-int main()
+int main(int argc, char **argv)
 {
 	/*
 	int n;
@@ -12,10 +12,12 @@ int main()
 	char *str4;
 	*/
 
+	parse_args(argc, argv);
 	RUN_TEST_SUITE(suite_ft_strlen);
 	RUN_TEST_SUITE(suite_ft_strcpy);
 	RUN_TEST_SUITE(suite_ft_strdup);
 	RUN_TEST_SUITE(suite_ft_strchr);
+	print_test_results();
 
 	/*
 	n = ft__strlen(str2);
