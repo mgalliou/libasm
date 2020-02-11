@@ -8,28 +8,26 @@ _ft_strchr:
 	mov  rbp, rsp
 	sub  rsp, 16
 
-	movzx rcx, sil  ; save char to find
-
 .loop:
-	movzx rax, byte [rdi]
-	cmp   al, 0 
-	jz    .endofstr
-	cmp   al, cl
-	je    .found
-	inc   rdi
+	movzx rax, byte [rdi] ; save cur byte
+	cmp   al, 0      
+	jz    .endofstr       ; jmp if cur byte is terminating null
+	cmp   al, sil
+	je    .found          ; jmp if cur byte is char to find
+	inc   rdi             ; increment cur byte addr
 	jmp   .loop
 
 .endofstr:
-	cmp al, cl
+	cmp al, sil ; check if char to find is null
 	je  .found
 	jmp .notfound
 
 .found:
-	mov rax, rdi
+	mov rax, rdi ; set cur byte  to return reg
 	jmp .exit
 
 .notfound:
-	xor rax, rax
+	xor rax, rax ; zero return register
 	jmp .exit
 
 .exit:
