@@ -16,7 +16,8 @@ SRC_NAME	=	main.c\
 				suite_ft_strlen.c\
 				suite_ft_strcpy.c\
 				suite_ft_strdup.c\
-				suite_ft_strchr.c
+				suite_ft_strchr.c\
+				suite_ft_atoi_base.c
 SRC			=	$(addprefix $(SRC_DIR)/,$(SRC_NAME))
 OBJ_NAME	=	$(SRC_NAME:.c=.o)
 OBJ			=	$(addprefix $(OBJ_DIR)/,$(OBJ_NAME))
@@ -25,7 +26,7 @@ LIB			=	$(addprefix $(LIB_DIR)/,$(LIB_NAME))
 
 all : $(NAME)
 
-$(NAME): $(OBJ) 
+$(NAME): $(OBJ) ../$(PROJECT)
 	$(CC) $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) -o $@ $(OBJ) $(LDLIBS)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(LIB)

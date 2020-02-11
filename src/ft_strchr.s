@@ -11,7 +11,7 @@ _ft_strchr:
 .loop:
 	movzx rax, byte [rdi] ; save cur byte
 	cmp   al, 0      
-	jz    .endofstr       ; jmp if cur byte is terminating null
+	je    .endofstr       ; jmp if cur byte is terminating null
 	cmp   al, sil
 	je    .found          ; jmp if cur byte is char to find
 	inc   rdi             ; increment cur byte addr
