@@ -4,6 +4,7 @@ section .text
 	global _ft_atoi_base
 	extern _ft_strlen
 	extern _ft_strchr
+	extern _ft_isspace
 
 base_is_valid:
 	push rbp
@@ -25,7 +26,7 @@ base_is_valid:
 	je    .false            ; jmp if char is - sign
 	movzx rsi, byte [rdi + 1]
 	call  _ft_strchr
-	cmp   rax, 0
+	cmp   rax, 0			; check for duplicate char in str
 	jne   .false
 	cmp   byte [rdi + 1], 0
 	jz    .true             ; jmp if next char is null
@@ -48,10 +49,15 @@ _ft_atoi_base:
 	mov  rbp, rsp
 	sub  rsp, 16
 
-	push rdi
+	push rdi           ; push number string
 	mov  rdi, rsi
 	call base_is_valid
-	pop  rdi
+	cmp  rax, 0
+	je   .done         ; jmp if base is not valid
+	pop  rdi           ; pop number string
+
+
+
 
 .done:
 	leave
