@@ -20,6 +20,7 @@ int main(int argc, char **argv)
 	RUN_TEST_SUITE(suite_ft_atoi_base);
 	RUN_TEST_SUITE(suite_ft_isspace);
 	RUN_TEST_SUITE(suite_ft_create_elem);
+	RUN_TEST_SUITE(suite_ft_list_push_front);
 	print_test_results();
 
 	/*
