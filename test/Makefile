@@ -27,10 +27,10 @@ LIB			=	$(addprefix $(LIB_DIR)/,$(LIB_NAME))
 
 all : $(NAME)
 
-$(NAME): $(OBJ) ../$(PROJECT)
+$(NAME): $(OBJ) 
 	$(CC) $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) -o $@ $(OBJ) $(LDLIBS)
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(LIB)
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(LIB) ../$(PROJECT)
 	@mkdir -p $(dir $@)
 	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
 

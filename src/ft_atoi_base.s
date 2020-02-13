@@ -35,7 +35,8 @@ base_is_valid:
 	push rdi
 	call _ft_strlen
 	pop  rdi
-	cmp  al, 2      ; jmp if base len is less than 2
+	push rax
+	cmp  rax, 2      ; jmp if base len is less than 2
 	jle  .false
 
 .loop:
@@ -56,7 +57,7 @@ base_is_valid:
 	jmp   .loop
 
 .true:
-	mov rax, 1
+	pop rax
 	jmp .exit
 
 .false:
@@ -72,46 +73,71 @@ _ft_atoi_base:
 	mov  rbp, rsp
 	sub  rsp, 16
 	push rbx
+	push r12
+	push r13
 
+	mov  r12, rsi      ; save base string
 	push rdi           ; push number string
 	mov  rdi, rsi
-	call base_is_valid
+	call base_is_valid ; base_is_valid return base len
+	mov  r13, rax      ; save base len
 	pop  rdi           ; pop number string
 	cmp  rax, 0
 	je   .done         ; jmp if base is not valid
-	mov  rax, 5		   ; tmp return value to check base_is_valid is working
-	jmp  .done
 
-;	mov rbx, 1
-;.skip_space_loop:
-;	push  rdi
-;	movzx rdi, byte [rdi]
-;	call  _ft_isspace
-;	cmp   rax, 0
-;	je   .skip_sign_loop
-;	pop   rdi
-;	inc   rdi
-;	jmp   .skip_space_loop
-;
-;.skip_sign_loop:
-;	push  rdi
-;	movzx rdi, byte [rdi]
-;	call  ft_issign
-;	cmp   rax, 0
-;	je    .convert   ;jmp if not a sign
-;	pop   rdi
-;	cmp   byte [rdi], '-'
-;	je    .negate
-;.after_negate:
-;	inc  rdi
-;	jmp .skip_sign_loop
-;
-;.negate:
-;	neg rbx
-;
-;.convert:
+	mov rbx, 1         ; used for sign
+.skip_space_loop:
+	push  rdi
+	movzx rdi, byte [rdi]
+	call  _ft_isspace
+	pop   rdi
+	cmp   rax, 0
+	je    .skip_sign_loop   ; jmp if not a space
+	inc   rdi
+	jmp   .skip_space_loop
+
+.skip_sign_loop:
+	push  rdi
+	movzx rdi, byte [rdi]
+	call  ft_issign
+	pop   rdi
+	cmp   rax, 0
+	je    .convert        ; jmp if not a sign
+	cmp   byte [rdi], '-'
+	je    .negate
+.after_negate:
+	inc   rdi
+	jmp   .skip_sign_loop
+
+.negate:
+	neg   rbx
+	jmp   .after_negate
+
+.convert:
+	xor   rax, rax
+.convert_loop:
+	cmp   byte [rdi], 0
+	je    .done           ; jmp if end of string
+	push  rax             ; push result
+	push  rdi             ; push ptr on converted str
+	movzx rsi, byte [rdi] ; prepare strchr call
+	mov   rdi, r12        ; 	to verify cur char is in base str
+	call  _ft_strchr
+	pop   rdi             ; pop ptr on converted str
+	cmp   rax, 0
+	je    .done           ; jmp if char not
+	mov   rcx, rax        ; save found char
+	pop   rax             ; pop result
+	mul   r13             ; multiply base len
+	add   rax, rcx        ; add found char addr
+	sub   rax, r12        ; sub first base str char addr
+	inc   rdi
+	jmp   .convert_loop
 
 .done:
-	pop rbx
+	imul  rbx
+	pop   r13
+	pop   r12
+	pop   rbx
 	leave
 	ret
