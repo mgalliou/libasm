@@ -9,7 +9,7 @@ section .text
 _ft_strdup:
 	push rbp
 	mov  rbp, rsp
-	sub  rsp, 16
+	sub  rsp, 8
 	push rbx
 
 	mov  rbx, rdi ; save ptr on str to be dup
