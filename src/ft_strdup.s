@@ -21,6 +21,7 @@ _ft_strdup:
 	jz   .done ; leave if malloc returned null
 	mov  rdi, rax
 	mov  rsi, rbx
+	pop  rbx
 	leave
 	jmp _ft_strcpy
 
