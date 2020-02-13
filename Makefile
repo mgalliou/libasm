@@ -3,11 +3,13 @@ RM       = rm -rf
 CC       = gcc
 CFLAGS   = -Wall -Wextra -Werror
 AS       = nasm
-ASFLAGS  = -f macho64
+ASFLAGS  = -f macho64 -i$(INC_DIR)
 ARFLAGS  = rc
 RL       = ranlib
 LDFLAGS  = -L.
 LDLIBS   = -lasm
+INC_DIR  = src
+INC_NAME = libasm.s
 SRC_DIR  = src
 SRC_NAME = ft_strlen.s\
 		   ft_strcpy.s\
@@ -17,9 +19,11 @@ SRC_NAME = ft_strlen.s\
 		   ft_strdup.s\
 		   ft_strchr.s\
 		   ft_atoi_base.s\
-		   ft_isspace.s
+		   ft_isspace.s\
+		   ft_create_elem.s
 OBJ_NAME = $(SRC_NAME:.s=.o)
 OBJ_DIR  = obj
+INC      = $(addprefix $(INC_DIR)/,$(INC_NAME))
 SRC      = $(addprefix $(SRC_DIR)/,$(SRC_NAME))
 OBJ      = $(addprefix $(OBJ_DIR)/,$(OBJ_NAME))
 
@@ -29,7 +33,7 @@ $(NAME): $(OBJ)
 	$(AR) $(ARFLAGS) $@ $^
 	$(RL) $@
 	
-$(OBJ_DIR)/%.o : $(SRC_DIR)/%.s
+$(OBJ_DIR)/%.o : $(SRC_DIR)/%.s $(INC)
 	@mkdir -p $(dir $@)
 	$(AS) $(ASFLAGS) $< -o $@
 

@@ -19,6 +19,7 @@ int main(int argc, char **argv)
 	RUN_TEST_SUITE(suite_ft_strchr);
 	RUN_TEST_SUITE(suite_ft_atoi_base);
 	RUN_TEST_SUITE(suite_ft_isspace);
+	RUN_TEST_SUITE(suite_ft_create_elem);
 	print_test_results();
 
 	/*
