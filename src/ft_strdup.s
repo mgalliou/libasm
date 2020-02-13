@@ -10,6 +10,7 @@ _ft_strdup:
 	push rbp
 	mov  rbp, rsp
 	sub  rsp, 16
+	push rbx
 
 	mov  rbx, rdi ; save ptr on str to be dup
 	call _ft_strlen
@@ -24,5 +25,6 @@ _ft_strdup:
 	jmp _ft_strcpy
 
 .done:
+	pop rbx
 	leave
 	ret
