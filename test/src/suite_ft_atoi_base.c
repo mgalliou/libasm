@@ -6,7 +6,7 @@
 /*   By: mgalliou <mgalliou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 14:56:27 by mgalliou          #+#    #+#             */
-/*   Updated: 2020/02/13 13:07:01 by mgalliou         ###   ########.fr       */
+/*   Updated: 2020/02/13 13:35:18 by mgalliou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,26 @@ static TEST(when_spaces_before_number_skip_them)
 	assert_int_equal(10, ft_atoi_base(" \t\r\v\f\n10", "0123456789"));
 }
 
+static TEST(when_123456789_in_base_10)
+{
+	assert_int_equal(123456789, ft_atoi_base("123456789", "0123456789"));
+}
+
+static TEST(when_intmax_in_base_10)
+{
+	assert_int_equal(2147483647, ft_atoi_base("2147483647", "0123456789"));
+}
+
+static TEST(when_intmin_in_base_10)
+{
+	assert_int_equal(-2147483648, ft_atoi_base("-2147483648", "0123456789"));
+}
+
+static TEST(when_intmax_in_base_16)
+{
+	assert_int_equal(2147483647, ft_atoi_base("7FFFFFFF", "0123456789ABCDEF"));
+}
+
 TEST_SUITE(suite_ft_atoi_base)
 {
 	RUN_TEST(when_base_is_null);
@@ -110,4 +130,8 @@ TEST_SUITE(suite_ft_atoi_base)
 	RUN_TEST(when_minus_plus_minus_plus_10_in_base_10);
 	RUN_TEST(when_32_in_base_16);
 	RUN_TEST(when_spaces_before_number_skip_them);
+    RUN_TEST(when_123456789_in_base_10);
+    RUN_TEST(when_intmax_in_base_10);
+	RUN_TEST(when_intmin_in_base_10);
+	RUN_TEST(when_intmax_in_base_16);
 }
