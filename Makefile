@@ -23,7 +23,8 @@ SRC_NAME = ft_strlen.s\
 		   ft_create_elem.s\
 		   ft_list_push_front.s\
 		   ft_list_size.s\
-		   ft_list_sort.s
+		   ft_list_sort.s\
+		   ft_list_remove_if.s
 OBJ_NAME = $(SRC_NAME:.s=.o)
 OBJ_DIR  = obj
 INC      = $(addprefix $(INC_DIR)/,$(INC_NAME))

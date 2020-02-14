@@ -8,7 +8,6 @@ section .text
 _ft_list_sort:
 	push rbp
 	mov  rbp, rsp
-	sub  rsp, 8
 	push rbx
 	push r12
 	push r13

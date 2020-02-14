@@ -23,6 +23,10 @@ extern t_list *ft_create_elem(void *data);
 extern void   ft_list_push_front(t_list **begin_list, void *data);
 extern int    ft_list_size(t_list *begin_list);
 extern void   ft_list_sort(t_list **begin_list, int(*cmp)());
+extern void   ft_list_remove_if(t_list **begin_list,
+								void*data_ref,
+								int(*cmp)(),
+								void(*free_fct)(void*));
 
 TEST_SUITE(suite_ft_strlen);
 TEST_SUITE(suite_ft_strcpy);
@@ -34,5 +38,6 @@ TEST_SUITE(suite_ft_create_elem);
 TEST_SUITE(suite_ft_list_push_front);
 TEST_SUITE(suite_ft_list_size);
 TEST_SUITE(suite_ft_list_sort);
+TEST_SUITE(suite_ft_list_remove_if);
 
 #endif
