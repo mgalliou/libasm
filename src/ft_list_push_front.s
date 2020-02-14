@@ -1,5 +1,7 @@
 bits 64
 
+%include "libasm.s"
+
 section .text
 	global _ft_list_push_front
 	extern _ft_create_elem
@@ -7,17 +9,17 @@ section .text
 _ft_list_push_front:
 	push rbp
 	mov  rbp, rsp
-	push rbx
 	sub  rsp, 8
+	push rbx
 	
 	mov  rbx, rdi        ; save ptr on list addr
-	mov  rdi, rsi        ; move data to first param for create_elem
+	mov  rdi, rsi        ; move data to first param reg for create_elem
 	call _ft_create_elem
 	cmp  rax, 0
-	je   .done
-	mov  rdi, [rbx]
-	mov  [rax + 8], rdi
-	mov  [rbx], rax
+	je   .done           ; jmp if create_elem failed
+	mov  rdi, [rbx]      ; 
+	mov  [rax + t_list.next], rdi  ; make new_elem->next point on list beg
+	mov  [rbx], rax      ; make beg list ptr point on new elem
 
 .done:
 	pop rbx
