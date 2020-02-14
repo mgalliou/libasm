@@ -22,6 +22,7 @@ extern int  ft_isspace(int c);
 extern t_list *ft_create_elem(void *data);
 extern void   ft_list_push_front(t_list **begin_list, void *data);
 extern int    ft_list_size(t_list *begin_list);
+extern void   ft_list_sort(t_list **begin_list, int(*cmp)());
 
 TEST_SUITE(suite_ft_strlen);
 TEST_SUITE(suite_ft_strcpy);
@@ -32,5 +33,6 @@ TEST_SUITE(suite_ft_isspace);
 TEST_SUITE(suite_ft_create_elem);
 TEST_SUITE(suite_ft_list_push_front);
 TEST_SUITE(suite_ft_list_size);
+TEST_SUITE(suite_ft_list_sort);
 
 #endif

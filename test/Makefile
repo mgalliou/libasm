@@ -21,7 +21,8 @@ SRC_NAME	=	main.c\
 				suite_ft_isspace.c\
 				suite_ft_create_elem.c\
 				suite_ft_list_push_front.c\
-				suite_ft_list_size.c
+				suite_ft_list_size.c\
+				suite_ft_list_sort.c
 SRC			=	$(addprefix $(SRC_DIR)/,$(SRC_NAME))
 OBJ_NAME	=	$(SRC_NAME:.c=.o)
 OBJ			=	$(addprefix $(OBJ_DIR)/,$(OBJ_NAME))
