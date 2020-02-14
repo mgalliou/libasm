@@ -21,6 +21,7 @@ int main(int argc, char **argv)
 	RUN_TEST_SUITE(suite_ft_isspace);
 	RUN_TEST_SUITE(suite_ft_create_elem);
 	RUN_TEST_SUITE(suite_ft_list_push_front);
+    RUN_TEST_SUITE(suite_ft_list_size);
 	print_test_results();
 
 	/*
