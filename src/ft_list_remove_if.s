@@ -15,8 +15,9 @@ _ft_list_remove_if:
 	push r13
 	push r14
 	push r15
-	xor  rax, rax
-	push rax
+
+	xor  rax, rax ; prev elem is null at the beginning
+	push rax      ; use stack to store prev elem addr
 
 	cmp rdi, 0
 	je  .done      ; jmp if begin list addr is null
@@ -44,27 +45,30 @@ _ft_list_remove_if:
 	cmp  rbx, [r12]
 	jne  .skip_beg_swap ; if cur elem equal beg list, point beg list to cur->next
 	mov  rax, [rbx + t_list.next]
-	mov  [r12], rax 
+	mov  [r12], rax
 
 .skip_beg_swap:
-	mov  rax, [rbx + t_list.next]
-	push rax
+	mov  rax, [rbx + t_list.next] ; save next elem addr
+	push rax                      ;  //
 	mov  rdi, rbx
-	call _free
-	pop  rax
-	mov  rbx, rax
-	pop  rax
+	call _free                    ; free cur elem
+	pop  rax                      ; restore next elem addr
+	mov  rbx, rax                 ; set next elem as cur elem
+	pop  rax                      ; restore addr of prev elem
 	cmp  rax, 0
-	je   .skip_prev_link
-	mov  [rax + t_list.next], rbx
+	je   .skip_prev_link          ; jmp if prev elem is null
+	mov  [rax + t_list.next], rbx ; point prev-next to cur
 .skip_prev_link:
 	push rax
 	jmp  .loop
 
 .next:
-	mov rbx, [rbx + t_list.next]
-	jmp .loop
-	
+	pop  rax
+	mov  rax, rbx ; save cur addr to prev
+	push rax
+	mov  rbx, [rbx + t_list.next]
+	jmp  .loop
+
 .done:
     pop rax
 	pop r15
