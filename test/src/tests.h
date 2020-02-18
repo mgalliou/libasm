@@ -30,6 +30,7 @@ extern void   ft_list_remove_if(t_list **begin_list,
 
 TEST_SUITE(suite_ft_strlen);
 TEST_SUITE(suite_ft_strcpy);
+TEST_SUITE(suite_ft_strcmp);
 TEST_SUITE(suite_ft_strdup);
 TEST_SUITE(suite_ft_strchr);
 TEST_SUITE(suite_ft_atoi_base);

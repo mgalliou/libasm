@@ -15,6 +15,7 @@ RM			= 	rm -rf
 SRC_NAME	=	main.c\
 				suite_ft_strlen.c\
 				suite_ft_strcpy.c\
+				suite_ft_strcmp.c\
 				suite_ft_strdup.c\
 				suite_ft_strchr.c\
 				suite_ft_atoi_base.c\
