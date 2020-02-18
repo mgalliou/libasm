@@ -6,17 +6,16 @@ section .text
 _ft_strcmp:
 	push rbp
 	mov  rbp, rsp
-	sub  rsp, 16
 
+	cld ; clear direction flag
 .loop:
-	movzx rdx, byte [rdi] ; move param to registers
-	cmp   rdx, ''
-	je    .compute_return ; jump if byte is null
-	cmp   dl, byte [rsi]
-	jne   .compute_return ; if different jump out of the loop
-	inc   rdi             ; increment dst ptr
-	inc   rsi             ; increment src ptr
-	jmp   .loop
+	movzx rdx, byte [rdi]
+	cmp   rdx, 0
+	je    .compute_return ; jmp if byte is null
+	cmpsb  
+	loope .loop           ; loop until bytes are equals
+	dec   rdi
+	dec   rsi
 
 .compute_return:
 	xor rax, rax       ; default return to 0
