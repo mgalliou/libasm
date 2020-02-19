@@ -6,30 +6,27 @@ section .text
 _ft_strchr:
 	push rbp
 	mov  rbp, rsp
-	sub  rsp, 16
+
+	xor  rax, rax
+	test rdi, rdi
+	jz  .done     ; jmp if string is null
+	cld
+	mov rax, rsi  ; set byte to be scanned by scas
 
 .loop:
-	movzx rax, byte [rdi] ; save cur byte
-	cmp   al, 0      
-	je    .endofstr       ; jmp if cur byte is terminating null
-	cmp   al, sil
-	je    .found          ; jmp if cur byte is char to find
-	inc   rdi             ; increment cur byte addr
-	jmp   .loop
+	cmp    byte [rdi], 0
+	je     .check_null   ; jmp if reach end of string
+	scasb
+	loopne .loop
+	lea    rax, [rdi - 1]
+	jmp    .done
 
-.endofstr:
-	cmp al, sil ; check if char to find is null
-	je  .found
-	jmp .notfound
+.check_null:
+	test   rax, rax
+	cmove  rax, rdi ; if scanned byte is null set return to cur byte addr
+	je     .done
+	xor    rax, rax ; else set return to null
 
-.found:
-	mov rax, rdi ; set cur byte  to return reg
-	jmp .exit
-
-.notfound:
-	xor rax, rax ; zero return register
-	jmp .exit
-
-.exit:
+.done:
 	leave
 	ret
