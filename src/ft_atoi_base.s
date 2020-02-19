@@ -14,7 +14,7 @@ ft_issign:
 	je  .true
 	cmp rdi, '-'
 	je  .true
-	ja  .exit
+	jmp  .exit
 
 .true:
 	mov rax, 1
@@ -35,13 +35,19 @@ base_is_valid:
 	pop  rdi
 	push rax
 	cmp  rax, 2      ; jmp if base len is less than 2
-	jle  .false
+	jb  .false
 
 .loop:
 	cmp   byte [rdi], '+'
 	je    .false            ; jmp if char is + sign
 	cmp   byte [rdi], '-'
 	je    .false            ; jmp if char is - sign
+	push  rdi
+	movzx rdi, byte [rdi]
+	call  _ft_isspace
+	pop   rdi
+	test  rax, rax
+	jnz   .false
 	movzx rsi, byte [rdi]
 	push  rdi
 	inc   rdi
@@ -121,11 +127,11 @@ _ft_atoi_base:
 	movzx rsi, byte [rdi] ; prepare strchr call
 	mov   rdi, r12        ; 	to verify cur char is in base str
 	call  _ft_strchr
+	mov   rcx, rax        ; save found char
 	pop   rdi             ; pop ptr on converted str
 	test  rax, rax
-	jz    .done           ; jmp if char not
-	mov   rcx, rax        ; save found char
 	pop   rax             ; pop result
+	jz    .done           ; jmp if char not
 	mul   r13             ; multiply base len
 	add   rax, rcx        ; add found char addr
 	sub   rax, r12        ; sub first base str char addr

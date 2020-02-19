@@ -6,11 +6,18 @@
 /*   By: mgalliou <mgalliou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 14:56:27 by mgalliou          #+#    #+#             */
-/*   Updated: 2020/02/13 13:35:18 by mgalliou         ###   ########.fr       */
+/*   Updated: 2020/02/19 17:09:13 by mgalliou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tests.h"
+
+static TEST(when_multiple_tests)
+{
+	assert_int_equal(5, ft_atoi_base("101", "01"));
+	assert_int_equal(0, ft_atoi_base("10111", "0\v541"));
+	assert_int_equal(493, ft_atoi_base(" 755x+", "01234567"));
+}
 
 static TEST(when_base_is_null)
 {
@@ -134,4 +141,5 @@ TEST_SUITE(suite_ft_atoi_base)
     RUN_TEST(when_intmax_in_base_10);
 	RUN_TEST(when_intmin_in_base_10);
 	RUN_TEST(when_intmax_in_base_16);
+	RUN_TEST(when_multiple_tests);
 }
