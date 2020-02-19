@@ -11,8 +11,8 @@ _ft_list_size:
 	
 	mov  rax, 0 ; init counter
 .loop:
-	cmp  rdi, 0
-	je   .done  ; jmp if cur ptr is null
+	test rdi, rdi
+	jz   .done  ; jmp if cur ptr is null
 	inc  rax    ; if not increment counter
 	mov  rdi, [rdi + t_list.next] ; mov next ptr to cur ptr
 	jmp  .loop

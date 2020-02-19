@@ -13,13 +13,13 @@ _ft_list_sort:
 	push r13
 	push r14
 
-	cmp rsi, 0
-	je  .done       ; jmp if cmp is null
-	cmp rdi, 0
-	je  .done       ; jmp if addr of beg list ptr is null
+	test rsi, rsi
+	jz  .done       ; jmp if cmp is null
+	test rdi, rdi
+	jz  .done       ; jmp if addr of beg list ptr is null
 	mov rbx, [rdi]  ; save list beg ptr in tmp reg
-	cmp rbx, 0
-	je  .done       ; jmp if beg list ptr is null
+	test rbx, rbx
+	jz  .done       ; jmp if beg list ptr is null
 	mov r12, rsi    ; save ptr on cmp
 	mov r13, rbx    ; save list beg ptr
 

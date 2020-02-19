@@ -19,12 +19,12 @@ _ft_list_remove_if:
 	xor  rax, rax ; prev elem is null at the beginning
 	push rax      ; use stack to store prev elem addr
 
-	cmp rdi, 0
-	je  .done      ; jmp if begin list addr is null
-	cmp rdx, 0
+	test rdi, rdi
+	jz  .done      ; jmp if begin list addr is null
+	test rdx, rdx
 	je  .done      ; jmp if cmp is null
-	cmp rcx, 0
-	je  .done      ; jmp if free_fct is null
+	test rcx, rcx
+	jz  .done      ; jmp if free_fct is null
 	mov rbx, [rdi] ; get ptr to first elem
 	mov r12, rdi   ; save list beg ptr addr
 	mov r13, rsi   ; save data_ref
@@ -32,13 +32,13 @@ _ft_list_remove_if:
 	mov r15, rcx   ; save free_fct
 
 .loop:
-	cmp  rbx, 0
-	je   .done                    ; jmp if cur elem is null
+	test rbx, rbx
+	jz   .done                    ; jmp if cur elem is null
 	mov  rdi, [rbx + t_list.data]
 	mov  rsi, r13
 	call r14                      ; call cmp
-	cmp  rax, 0
-	jne  .next                    ; jmp if cmp returned 0
+	test rax, rax 
+	jnz  .next                    ; jmp if cmp did not returned 0
 	mov  rdi, [rbx + t_list.data]
 	call r15                      ; call free_fct
 
@@ -55,8 +55,8 @@ _ft_list_remove_if:
 	pop  rax                      ; restore next elem addr
 	mov  rbx, rax                 ; set next elem as cur elem
 	pop  rax                      ; restore addr of prev elem
-	cmp  rax, 0
-	je   .skip_prev_link          ; jmp if prev elem is null
+	test rax, rax
+	jz   .skip_prev_link          ; jmp if prev elem is null
 	mov  [rax + t_list.next], rbx ; point prev-next to cur
 .skip_prev_link:
 	push rax

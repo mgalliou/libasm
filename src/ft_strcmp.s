@@ -10,8 +10,8 @@ _ft_strcmp:
 	cld ; clear direction flag
 .loop:
 	movzx rdx, byte [rdi]
-	cmp   rdx, 0
-	je    .compute_return ; jmp if byte is null
+	test  rdx, rdx
+	jz    .compute_return ; jmp if byte is null
 	cmpsb  
 	loope .loop           ; loop until bytes are equals
 	dec   rdi

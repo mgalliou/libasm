@@ -15,8 +15,8 @@ _ft_list_push_front:
 	mov  rbx, rdi        ; save ptr on list beg addr
 	mov  rdi, rsi        ; prepare ft_create_elem call with data ptr
 	call _ft_create_elem
-	cmp  rax, 0
-	je   .done           ; jmp if ft_create_elem failed
+	test rax, rax
+	jz   .done           ; jmp if ft_create_elem failed
 
 	mov  rdi, [rbx]
 	mov  [rax + t_list.next], rdi ; make new_elem->next point on list beg

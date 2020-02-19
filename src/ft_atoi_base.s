@@ -30,8 +30,8 @@ base_is_valid:
 	mov  rbp, rsp
 	sub  rsp, 16
 
-	cmp  rdi, 0
-	je   .false     ; jmp if base str ptr is null
+	test rdi, rdi
+	jz   .false     ; jmp if base str ptr is null
 	push rdi
 	call _ft_strlen
 	pop  rdi
@@ -49,8 +49,8 @@ base_is_valid:
 	inc   rdi
 	call  _ft_strchr
 	pop   rdi
-	cmp   rax, 0			; check for duplicate char in str
-	jne   .false
+	test  rax, rax			; check for duplicate char in str
+	jnz   .false
 	cmp   byte [rdi + 1], 0
 	jz    .true             ; jmp if next char is null
 	inc   rdi
@@ -91,8 +91,8 @@ _ft_atoi_base:
 	movzx rdi, byte [rdi]
 	call  _ft_isspace
 	pop   rdi
-	cmp   rax, 0
-	je    .skip_sign_loop   ; jmp if not a space
+	test  rax, rax
+	jz    .skip_sign_loop   ; jmp if not a space
 	inc   rdi
 	jmp   .skip_space_loop
 
@@ -101,8 +101,8 @@ _ft_atoi_base:
 	movzx rdi, byte [rdi]
 	call  ft_issign
 	pop   rdi
-	cmp   rax, 0
-	je    .convert        ; jmp if not a sign
+	test  rax, rax
+	jz    .convert        ; jmp if not a sign
 	cmp   byte [rdi], '-'
 	je    .negate
 .after_negate:
@@ -124,8 +124,8 @@ _ft_atoi_base:
 	mov   rdi, r12        ; 	to verify cur char is in base str
 	call  _ft_strchr
 	pop   rdi             ; pop ptr on converted str
-	cmp   rax, 0
-	je    .done           ; jmp if char not
+	test  rax, rax
+	jz    .done           ; jmp if char not
 	mov   rcx, rax        ; save found char
 	pop   rax             ; pop result
 	mul   r13             ; multiply base len

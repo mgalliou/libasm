@@ -15,8 +15,8 @@ _ft_create_elem:
 	mov  rbx, rdi         ; save ptr on data 
 	mov  rdi, t_list_size ; prepare malloc call
 	call _malloc
-	cmp  rax, 0
-	je   .failed          ; jmp if malloc failed
+	test rax, rax
+	jz   .failed          ; jmp if malloc failed
 
 	mov  qword [rax + t_list.data], rbx ; make new_elem->data point on data
 	mov  qword [rax + t_list.next], 0   ; make new_elem->next point on NULL
