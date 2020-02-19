@@ -1,6 +1,4 @@
-bits 64
-
-%include "libasm.s"
+%include "t_list.s"
 
 section .text
 	global _ft_create_elem
@@ -12,7 +10,7 @@ _ft_create_elem:
 	sub  rsp, 8
 	push rbx
 
-	mov  rbx, rdi         ; save ptr on data 
+	mov  rbx, rdi         ; save ptr on data
 	mov  rdi, t_list_size ; prepare malloc call
 	call _malloc
 	test rax, rax
@@ -21,7 +19,7 @@ _ft_create_elem:
 	mov  qword [rax + t_list.data], rbx ; make new_elem->data point on data
 	mov  qword [rax + t_list.next], 0   ; make new_elem->next point on NULL
 	jmp  .done
-	
+
 .failed:
 	xor  rax, rax
 

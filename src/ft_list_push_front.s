@@ -1,6 +1,4 @@
-bits 64
-
-%include "libasm.s"
+%include "t_list.s"
 
 section .text
 	global _ft_list_push_front

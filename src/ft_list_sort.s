@@ -1,9 +1,7 @@
-bits 64
+%include "t_list.s"
 
 section .text
 	global _ft_list_sort
-
-%include "libasm.s"
 
 _ft_list_sort:
 	push rbp
@@ -40,7 +38,7 @@ _ft_list_sort:
 	mov rcx, [rbx + t_list.data] ; save ptr on cur elem data
 	mov rdi, [r14 + t_list.data] ; save ptr on next elem data
 	mov [rbx + t_list.data], rdi ; move next elem data to cur data
-	mov [r14 + t_list.data], rcx ; move cur data to next elem data 
+	mov [r14 + t_list.data], rcx ; move cur data to next elem data
 	mov rbx, r13                 ; move cur ptr to beg list ptr
 	jmp .loop
 

@@ -1,5 +1,3 @@
-bits 64
-
 SYS_write  equ 0x02000004
 
 section .text
@@ -17,4 +15,3 @@ _ft__write:
 	pop rax
 	leave
 	ret
-	

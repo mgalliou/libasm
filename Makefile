@@ -9,22 +9,22 @@ RL       = ranlib
 LDFLAGS  = -L.
 LDLIBS   = -lasm
 INC_DIR  = src
-INC_NAME = libasm.s
+INC_NAME = t_list.s
 SRC_DIR  = src
 SRC_NAME = ft_strlen.s\
-		   ft_strcpy.s\
-		   ft_strcmp.s\
-		   ft_write.s\
-		   ft_read.s\
-		   ft_strdup.s\
-		   ft_strchr.s\
-		   ft_atoi_base.s\
-		   ft_isspace.s\
-		   ft_create_elem.s\
-		   ft_list_push_front.s\
-		   ft_list_size.s\
-		   ft_list_sort.s\
-		   ft_list_remove_if.s
+			ft_strcpy.s\
+			ft_strcmp.s\
+			ft_write.s\
+			ft_read.s\
+			ft_strdup.s\
+			ft_strchr.s\
+			ft_atoi_base.s\
+			ft_isspace.s\
+			ft_create_elem.s\
+			ft_list_push_front.s\
+			ft_list_size.s\
+			ft_list_sort.s\
+			ft_list_remove_if.s
 OBJ_NAME = $(SRC_NAME:.s=.o)
 OBJ_DIR  = obj
 INC      = $(addprefix $(INC_DIR)/,$(INC_NAME))

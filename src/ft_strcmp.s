@@ -1,5 +1,3 @@
-bits 64
-
 section .text
 	global _ft_strcmp
 
@@ -12,7 +10,7 @@ _ft_strcmp:
 	movzx rdx, byte [rdi]
 	test  rdx, rdx
 	jz    .compute_return ; jmp if byte is null
-	cmpsb  
+	cmpsb
 	loope .loop           ; loop until bytes are equals
 	dec   rdi
 	dec   rsi

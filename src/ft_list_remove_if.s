@@ -1,6 +1,4 @@
-bits 64
-
-%include "libasm.s"
+%include "t_list.s"
 
 section .text
 	global _ft_list_remove_if
@@ -37,7 +35,7 @@ _ft_list_remove_if:
 	mov  rdi, [rbx + t_list.data]
 	mov  rsi, r13
 	call r14                      ; call cmp
-	test rax, rax 
+	test rax, rax
 	jnz  .next                    ; jmp if cmp did not returned 0
 	mov  rdi, [rbx + t_list.data]
 	call r15                      ; call free_fct

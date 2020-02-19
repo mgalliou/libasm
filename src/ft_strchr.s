@@ -1,5 +1,3 @@
-bits 64
-
 section .text
 	global _ft_strchr
 

@@ -1,5 +1,3 @@
-bits 64
-
 SYS_read equ 0x02000003
 
 section .text
@@ -17,4 +15,3 @@ _ft_read:
 	pop rax
 	leave
 	ret
-
