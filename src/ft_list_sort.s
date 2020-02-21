@@ -29,7 +29,7 @@ _ft_list_sort:
 	mov  rdi, [rbx + t_list.data]
 	mov  rsi, [r14 + t_list.data]
 	call r12
-	cmp  rax, 0
+	cmp  eax, 0
 	jg  .swap_data
 	mov  rbx, [rbx + t_list.next] ; mov next ptr to cur ptr
 	jmp  .loop
