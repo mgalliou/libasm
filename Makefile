@@ -44,8 +44,15 @@ $(OBJ_DIR)/%.o : $(SRC_DIR)/%.s $(INC)
 debug: ASFLAGS := $(ASFLAGS) -g
 debug: all
 
-test: all
+check: all
 	make -C test
+	./test/test
+
+test_main: $(NAME)
+	$(CC) main.c $(NAME) -o test_main
+
+test_bonus: $(NAME)
+	$(CC) main_bonus.c $(NAME) -o test_bonus
 
 clean:
 	$(RM) $(OBJ_DIR)
@@ -55,4 +62,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all check test_main test_bonus clean fclean re
