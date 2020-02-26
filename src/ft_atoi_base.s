@@ -7,7 +7,6 @@ section .text
 ft_issign:
 	push rbp
 	mov  rbp, rsp
-	sub  rsp, 16
 
 	xor rax, rax
 	cmp rdi, '+'
@@ -26,7 +25,6 @@ ft_issign:
 base_is_valid:
 	push rbp
 	mov  rbp, rsp
-	sub  rsp, 16
 
 	test rdi, rdi
 	jz   .false     ; jmp if base str ptr is null
@@ -75,7 +73,6 @@ base_is_valid:
 _ft_atoi_base:
 	push rbp
 	mov  rbp, rsp
-	sub  rsp, 16
 	push rbx
 	push r12
 	push r13

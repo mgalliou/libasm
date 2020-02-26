@@ -40,5 +40,6 @@ TEST_SUITE(suite_ft_list_push_front);
 TEST_SUITE(suite_ft_list_size);
 TEST_SUITE(suite_ft_list_sort);
 TEST_SUITE(suite_ft_list_remove_if);
+TEST_SUITE(suite_ft_write_read);
 
 #endif

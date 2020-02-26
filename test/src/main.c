@@ -17,5 +17,6 @@ int main(int argc, char **argv)
     RUN_TEST_SUITE(suite_ft_list_size);
     RUN_TEST_SUITE(suite_ft_list_sort);
 	RUN_TEST_SUITE(suite_ft_list_remove_if);
+	RUN_TEST_SUITE(suite_ft_write_read);
 	print_test_results();
 }

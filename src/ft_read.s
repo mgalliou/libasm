@@ -6,7 +6,6 @@ section .text
 _ft_read:
 	push rbp
 	mov  rbp, rsp
-	sub  rsp, 16
 
 	push rax
 	mov  rax, SYS_read

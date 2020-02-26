@@ -4,7 +4,6 @@ section .text
 _ft_isspace:
 	push rbp
 	mov  rbp, rsp
-	sub  rsp, 16
 
 	xor rax, rax
 	cmp rdi, ' '
