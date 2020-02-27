@@ -34,7 +34,9 @@ _ft_list_remove_if:
 	jz   .done                    ; jmp if cur elem is null
 	mov  rdi, [rbx + t_list.data]
 	mov  rsi, r13
+	sub  rsp, 8                   ; 16byte align stack
 	call r14                      ; call cmp
+	add  rsp, 8                   ; revert align
 	test rax, rax
 	jnz  .next                    ; jmp if cmp did not returned 0
 	mov  rdi, [rbx + t_list.data]
@@ -57,13 +59,13 @@ _ft_list_remove_if:
 	jz   .skip_prev_link          ; jmp if prev elem is null
 	mov  [rax + t_list.next], rbx ; point prev-next to cur
 .skip_prev_link:
-	push rax
+	push rax                      ; save addr of prev elem
 	jmp  .loop
 
 .next:
-	pop  rax
+	pop  rax      ; restore prev elem
 	mov  rax, rbx ; save cur addr to prev
-	push rax
+	push rax      ; save prev elem
 	mov  rbx, [rbx + t_list.next]
 	jmp  .loop
 

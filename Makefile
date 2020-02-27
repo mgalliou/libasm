@@ -58,7 +58,7 @@ clean:
 	$(RM) $(OBJ_DIR)
 
 fclean: clean
-	$(RM) $(NAME)
+	$(RM) $(NAME) test_main test_bonus
 
 re: fclean all
 

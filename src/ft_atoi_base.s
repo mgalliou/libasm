@@ -25,13 +25,15 @@ ft_issign:
 base_is_valid:
 	push rbp
 	mov  rbp, rsp
+	push rbx
+	push r11
 
 	test rdi, rdi
 	jz   .false     ; jmp if base str ptr is null
-	push rdi
+	mov  rbx, rdi
 	call _ft_strlen
-	pop  rdi
-	push rax
+	mov  rdi, rbx
+	mov  r11, rax
 	cmp  rax, 2      ; jmp if base len is less than 2
 	jb  .false
 
@@ -40,17 +42,17 @@ base_is_valid:
 	je    .false            ; jmp if char is + sign
 	cmp   byte [rdi], '-'
 	je    .false            ; jmp if char is - sign
-	push  rdi
+	mov   rbx, rdi
 	movzx rdi, byte [rdi]
 	call  _ft_isspace
-	pop   rdi
+	mov   rdi, rbx
 	test  rax, rax
 	jnz   .false
 	movzx rsi, byte [rdi]
-	push  rdi
+	mov   rbx, rdi
 	inc   rdi
 	call  _ft_strchr
-	pop   rdi
+	mov   rdi, rbx
 	test  rax, rax			; check for duplicate char in str
 	jnz   .false
 	cmp   byte [rdi + 1], 0
@@ -59,7 +61,7 @@ base_is_valid:
 	jmp   .loop
 
 .true:
-	pop rax
+	mov rax, r11
 	jmp .exit
 
 .false:
@@ -67,6 +69,8 @@ base_is_valid:
 	jmp .exit
 
 .exit:
+	pop r11
+	pop rbx
 	leave
 	ret
 
@@ -76,6 +80,8 @@ _ft_atoi_base:
 	push rbx
 	push r12
 	push r13
+	push r14
+	push r15
 
 	mov  r12, rsi      ; save base string
 	push rdi           ; push number string
@@ -88,20 +94,20 @@ _ft_atoi_base:
 
 	mov rbx, 1         ; used for sign
 .skip_space_loop:
-	push  rdi
+	mov   r14, rdi
 	movzx rdi, byte [rdi]
 	call  _ft_isspace
-	pop   rdi
+	mov   rdi, r14
 	test  rax, rax
 	jz    .skip_sign_loop   ; jmp if not a space
 	inc   rdi
 	jmp   .skip_space_loop
 
 .skip_sign_loop:
-	push  rdi
+	mov   r14, rdi
 	movzx rdi, byte [rdi]
 	call  ft_issign
-	pop   rdi
+	mov   rdi, r14
 	test  rax, rax
 	jz    .convert        ; jmp if not a sign
 	cmp   byte [rdi], '-'
@@ -119,15 +125,15 @@ _ft_atoi_base:
 .convert_loop:
 	cmp   byte [rdi], 0
 	je    .done           ; jmp if end of string
-	push  rax             ; push result
-	push  rdi             ; push ptr on converted str
+	mov   r14, rax        ; save result
+	mov   r15, rdi        ; save ptr on converted str
 	movzx rsi, byte [rdi] ; prepare strchr call
 	mov   rdi, r12        ; 	to verify cur char is in base str
 	call  _ft_strchr
 	mov   rcx, rax        ; save found char
-	pop   rdi             ; pop ptr on converted str
+	mov   rdi, r15        ; restor ptr on converted str
 	test  rax, rax
-	pop   rax             ; pop result
+	mov   rax, r14        ; restor result
 	jz    .done           ; jmp if char not
 	mul   r13             ; multiply base len
 	add   rax, rcx        ; add found char addr
@@ -137,6 +143,8 @@ _ft_atoi_base:
 
 .done:
 	imul  rbx
+	pop   r15
+	pop   r14
 	pop   r13
 	pop   r12
 	pop   rbx
